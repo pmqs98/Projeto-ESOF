@@ -1,0 +1,6 @@
+projectKey=Projeto-ESOF
+serverUrl=http://localhost:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://localhost:9000/dashboard?id=Projeto-ESOF
+ceTaskId=AX5Zb4rJAkduCcQ0wFZ3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX5Zb4rJAkduCcQ0wFZ3
