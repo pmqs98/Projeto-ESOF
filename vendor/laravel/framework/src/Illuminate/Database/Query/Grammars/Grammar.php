@@ -45,7 +45,7 @@ class Grammar extends BaseGrammar
      */
     public function compileSelect(Builder $query)
     {
-        if ($query->unions && $query->aggregate) {
+        if (($query->unions || $query->havings) && $query->aggregate) {
             return $this->compileUnionAggregate($query);
         }
 
@@ -459,7 +459,7 @@ class Grammar extends BaseGrammar
     }
 
     /**
-     * Compile a where clause comparing two columns..
+     * Compile a where clause comparing two columns.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $where
@@ -627,6 +627,18 @@ class Grammar extends BaseGrammar
     protected function compileJsonLength($column, $operator, $value)
     {
         throw new RuntimeException('This database engine does not support JSON length operations.');
+    }
+
+    /**
+     * Compile a "where fulltext" clause.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  array  $where
+     * @return string
+     */
+    public function whereFullText(Builder $query, $where)
+    {
+        throw new RuntimeException('This database engine does not support fulltext search operations.');
     }
 
     /**
@@ -998,7 +1010,7 @@ class Grammar extends BaseGrammar
     /**
      * Compile an "upsert" statement into SQL.
      *
-     * @param  \Illuminate\Database\Query\Builder $query
+     * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $values
      * @param  array  $uniqueBy
      * @param  array  $update

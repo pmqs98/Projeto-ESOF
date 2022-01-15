@@ -105,41 +105,23 @@ class RegisterController extends Controller
         $a->save();
 
         return $a;
-
     }
 
     public static function findDistritos()
     {
-
         $distrito = distritos::orderBy('nome', 'asc')->get(); //get data from table
-        //dd($distrito);
-        //return view('findDistritos'); //sent data to view
-        //return view('register'); //sent data to view~
         return ($distrito);
     }
     public static function  findConcelhos()
     {
-
         $concelhos = concelhos::orderBy('nome', 'asc')->get(); //get data from table
-        //dd($distrito);
-        //return view('findDistritos'); //sent data to view
-        //return view('register'); //sent data to view~
         return ($concelhos);
-        //if our chosen id and products table prod_cat_id col match the get first 100 data 
-
-        //$request->id here is the id of our chosen option id
-        //$data = concelhos::select('nome')->where('distrito', $request->nome)->get();
-        // return response()->json($data); //then sent this data to ajax success
     }
 
 
     public static function findFreguesias()
     {
-
         $freguesias = freguesias::all(); //get data from table
-        //dd($distrito);
-        //return view('findDistritos'); //sent data to view
-        //return view('register'); //sent data to view~
         return ($freguesias);
     }
 }
