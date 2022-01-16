@@ -20,6 +20,7 @@ class AnunciosTest extends TestCase
         $response->assertStatus(200)->assertViewIs('layouts.cars');
     }
 
+
     public function test_can_filter_anuncios()
     {
         $filter = [
@@ -37,15 +38,35 @@ class AnunciosTest extends TestCase
             ->assertDontSee('Seat Ibiza PD');
     }
 
+
     public function test_can_reach_create_anuncios_page()
     {
+        $credentials = [
+            'email' => "teste@hotmail.com",
+            'password' => "qwertyui"
+        ];
+
+        $this->post('/login', $credentials)
+            ->assertSessionHasNoErrors();
+
         $response = $this->get('/product');
 
-        $response->assertStatus(302);
+        $response->assertSuccessful()
+            ->assertSee('Titulo');
     }
+
 
     public function test_can_create_anuncio()
     {
+        $credentials = [
+            'email' => "teste@hotmail.com",
+            'password' => "qwertyui"
+        ];
+
+        $this->post('/login', $credentials)
+            ->assertSessionHasNoErrors();
+
+
         $data = [
             'titulo' => 'teste',
             'descricao' => 'teste',
@@ -82,7 +103,6 @@ class AnunciosTest extends TestCase
         ];
 
         $this->get('/product', $data)
-            ->assertSessionHasNoErrors()
-            ->assertStatus(302);
+            ->assertSuccessful();
     }
 }
