@@ -28,7 +28,7 @@ class UtilizadoresSeeder extends Seeder
             'sexo' => Arr::random($array),
             'data_nascimento' => date('Y/m/d'),
             'tipovendedor' => Arr::random($array_tipovendedor),
-            'admin' => Arr::random(0, 1),
+            'admin' => random_int(0, 1),
             'password' => Hash::make('password'),
             'id_freguesia' => random_int(1, 3092),
             'foto_perfil' => Str::random(10)
